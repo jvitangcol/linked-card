@@ -9,8 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { signUpSchema } from "@/lib/validation";
-import { signUp } from "@/lib/auth-client";
+import { signInSchema } from "@/lib/validation";
+import { signIn } from "@/lib/auth-client";
 
 function FieldInfo({ field }: { field: AnyFieldApi }) {
   return (
@@ -27,21 +27,19 @@ function FieldInfo({ field }: { field: AnyFieldApi }) {
   );
 }
 
-export default function SignUpForm() {
+export default function LoginForm() {
   const router = useRouter();
   const form = useForm({
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
     validators: {
-      onChange: signUpSchema,
+      onChange: signInSchema,
     },
     onSubmit: async ({ value }) => {
-      await signUp.email(
+      await signIn.email(
         {
-          name: value.name,
           email: value.email,
           password: value.password,
         },
@@ -49,7 +47,7 @@ export default function SignUpForm() {
           onRequest: () => {},
           onResponse: () => {},
           onError: (ctx) => {
-            toast.error(ctx.error.name);
+            toast.error(ctx.error.message);
           },
           onSuccess: () => {
             router.push("/cards");
@@ -62,7 +60,7 @@ export default function SignUpForm() {
   return (
     <div className="space-y-4 border">
       <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold">Create Account</h1>
+        <h1 className="text-3xl font-bold">Welcome Back</h1>
         <p className="text-sm text-muted-foreground">Share it digital</p>
       </div>
 
@@ -74,25 +72,6 @@ export default function SignUpForm() {
         }}
       >
         <div className="space-y-6">
-          {/* Name Field */}
-          <form.Field name="name">
-            {(field) => (
-              <div className="space-y-2">
-                <Label htmlFor={field.name}>Name</Label>
-                <Input
-                  type="text"
-                  id={field.name}
-                  name={field.name}
-                  value={field.state.value}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                />
-                <div className="h-3.5">
-                  <FieldInfo field={field} />
-                </div>
-              </div>
-            )}
-          </form.Field>
-
           {/* Email Field */}
           <form.Field name="email">
             {(field) => (
@@ -132,15 +111,15 @@ export default function SignUpForm() {
           </form.Field>
 
           <Button type="submit" className="w-full">
-            Create Account
+            Login
           </Button>
         </div>
       </form>
 
       <div className="text-center">
-        <span>Already have an account </span>
-        <Link href={"/login"} className="text-primary hover:underline">
-          Sign in
+        <span>Don&apos;t have an account? </span>
+        <Link href={"/sign-up"} className="text-primary hover:underline">
+          Sign up
         </Link>
       </div>
     </div>
