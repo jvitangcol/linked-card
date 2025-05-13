@@ -7434,7 +7434,7 @@ export namespace Prisma {
   }
 
   export type SessionCreateInput = {
-    id: string
+    id?: string
     createdAt: Date | string
     updatedAt: Date | string
     expiresAt: Date | string
@@ -7445,7 +7445,7 @@ export namespace Prisma {
   }
 
   export type SessionUncheckedCreateInput = {
-    id: string
+    id?: string
     createdAt: Date | string
     updatedAt: Date | string
     expiresAt: Date | string
@@ -7478,7 +7478,7 @@ export namespace Prisma {
   }
 
   export type SessionCreateManyInput = {
-    id: string
+    id?: string
     createdAt: Date | string
     updatedAt: Date | string
     expiresAt: Date | string
@@ -7510,7 +7510,7 @@ export namespace Prisma {
   }
 
   export type AccountCreateInput = {
-    id: string
+    id?: string
     createdAt: Date | string
     updatedAt: Date | string
     accountId: string
@@ -7526,7 +7526,7 @@ export namespace Prisma {
   }
 
   export type AccountUncheckedCreateInput = {
-    id: string
+    id?: string
     createdAt: Date | string
     updatedAt: Date | string
     accountId: string
@@ -7574,7 +7574,7 @@ export namespace Prisma {
   }
 
   export type AccountCreateManyInput = {
-    id: string
+    id?: string
     createdAt: Date | string
     updatedAt: Date | string
     accountId: string
@@ -7621,7 +7621,7 @@ export namespace Prisma {
   }
 
   export type VerificationCreateInput = {
-    id: string
+    id?: string
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
     identifier: string
@@ -7630,7 +7630,7 @@ export namespace Prisma {
   }
 
   export type VerificationUncheckedCreateInput = {
-    id: string
+    id?: string
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
     identifier: string
@@ -7657,7 +7657,7 @@ export namespace Prisma {
   }
 
   export type VerificationCreateManyInput = {
-    id: string
+    id?: string
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
     identifier: string
@@ -8417,7 +8417,7 @@ export namespace Prisma {
   }
 
   export type SessionCreateWithoutUserInput = {
-    id: string
+    id?: string
     createdAt: Date | string
     updatedAt: Date | string
     expiresAt: Date | string
@@ -8427,7 +8427,7 @@ export namespace Prisma {
   }
 
   export type SessionUncheckedCreateWithoutUserInput = {
-    id: string
+    id?: string
     createdAt: Date | string
     updatedAt: Date | string
     expiresAt: Date | string
@@ -8447,7 +8447,7 @@ export namespace Prisma {
   }
 
   export type AccountCreateWithoutUserInput = {
-    id: string
+    id?: string
     createdAt: Date | string
     updatedAt: Date | string
     accountId: string
@@ -8462,7 +8462,7 @@ export namespace Prisma {
   }
 
   export type AccountUncheckedCreateWithoutUserInput = {
-    id: string
+    id?: string
     createdAt: Date | string
     updatedAt: Date | string
     accountId: string
@@ -8734,7 +8734,7 @@ export namespace Prisma {
   }
 
   export type SessionCreateManyUserInput = {
-    id: string
+    id?: string
     createdAt: Date | string
     updatedAt: Date | string
     expiresAt: Date | string
@@ -8744,7 +8744,7 @@ export namespace Prisma {
   }
 
   export type AccountCreateManyUserInput = {
-    id: string
+    id?: string
     createdAt: Date | string
     updatedAt: Date | string
     accountId: string

@@ -1,16 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
+import { toast } from "sonner";
 import { useForm } from "@tanstack/react-form";
 import type { AnyFieldApi } from "@tanstack/react-form";
 import { useRouter } from "next/navigation";
+import { signInSchema, SignInValues } from "@/lib/validation";
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
-import { signInSchema } from "@/lib/validation";
-import { signIn } from "@/lib/auth-client";
+import LoadingButton from "@/components/LoadingButton";
+import { signInEmailAction } from "@/actions/auth/sign-in-email.action";
 
 function FieldInfo({ field }: { field: AnyFieldApi }) {
   return (
@@ -29,6 +30,8 @@ function FieldInfo({ field }: { field: AnyFieldApi }) {
 
 export default function LoginForm() {
   const router = useRouter();
+  const [isPending, setIsPending] = useState(false);
+
   const form = useForm({
     defaultValues: {
       email: "",
@@ -37,23 +40,18 @@ export default function LoginForm() {
     validators: {
       onChange: signInSchema,
     },
-    onSubmit: async ({ value }) => {
-      await signIn.email(
-        {
-          email: value.email,
-          password: value.password,
-        },
-        {
-          onRequest: () => {},
-          onResponse: () => {},
-          onError: (ctx) => {
-            toast.error(ctx.error.message);
-          },
-          onSuccess: () => {
-            router.push("/cards");
-          },
-        }
-      );
+    onSubmit: async ({ value }: { value: SignInValues }) => {
+      setIsPending(true);
+
+      const { error } = await signInEmailAction(value);
+
+      if (error) {
+        toast.error(error);
+        setIsPending(false);
+      } else {
+        toast.success("Login successful.");
+        router.push("/cards");
+      }
     },
   });
 
@@ -83,6 +81,7 @@ export default function LoginForm() {
                   name={field.name}
                   value={field.state.value}
                   onChange={(e) => field.handleChange(e.target.value)}
+                  autoComplete="off"
                 />
                 <div className="h-3.5">
                   <FieldInfo field={field} />
@@ -110,9 +109,9 @@ export default function LoginForm() {
             )}
           </form.Field>
 
-          <Button type="submit" className="w-full">
+          <LoadingButton type="submit" className="w-full" loading={isPending}>
             Login
-          </Button>
+          </LoadingButton>
         </div>
       </form>
 
