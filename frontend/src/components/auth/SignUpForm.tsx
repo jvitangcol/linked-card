@@ -1,16 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "@tanstack/react-form";
 import type { AnyFieldApi } from "@tanstack/react-form";
-import { useRouter } from "next/navigation";
+
+import { signUpSchema, SignUpValues } from "@/lib/validation";
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import LoadingButton from "@/components/LoadingButton";
+import { signUpEmailAction } from "@/actions/auth/sign-up.action";
 import { toast } from "sonner";
-import { signUpSchema } from "@/lib/validation";
-import { signUp } from "@/lib/auth-client";
 
 function FieldInfo({ field }: { field: AnyFieldApi }) {
   return (
@@ -29,33 +31,29 @@ function FieldInfo({ field }: { field: AnyFieldApi }) {
 
 export default function SignUpForm() {
   const router = useRouter();
+  const [isPending, setIsPending] = useState(false);
+
   const form = useForm({
     defaultValues: {
       name: "",
       email: "",
       password: "",
-    },
+    } as SignUpValues,
     validators: {
       onChange: signUpSchema,
     },
-    onSubmit: async ({ value }) => {
-      await signUp.email(
-        {
-          name: value.name,
-          email: value.email,
-          password: value.password,
-        },
-        {
-          onRequest: () => {},
-          onResponse: () => {},
-          onError: (ctx) => {
-            toast.error(ctx.error.name);
-          },
-          onSuccess: () => {
-            router.push("/cards");
-          },
-        }
-      );
+    onSubmit: async ({ value }: { value: SignUpValues }) => {
+      setIsPending(true);
+
+      const { error } = await signUpEmailAction(value);
+
+      if (error) {
+        toast.error(error);
+        setIsPending(false);
+      } else {
+        toast.success("Registration complete. You're all set");
+        router.push("/login");
+      }
     },
   });
 
@@ -85,6 +83,7 @@ export default function SignUpForm() {
                   name={field.name}
                   value={field.state.value}
                   onChange={(e) => field.handleChange(e.target.value)}
+                  autoComplete="off"
                 />
                 <div className="h-3.5">
                   <FieldInfo field={field} />
@@ -104,6 +103,7 @@ export default function SignUpForm() {
                   name={field.name}
                   value={field.state.value}
                   onChange={(e) => field.handleChange(e.target.value)}
+                  autoComplete="off"
                 />
                 <div className="h-3.5">
                   <FieldInfo field={field} />
@@ -131,9 +131,9 @@ export default function SignUpForm() {
             )}
           </form.Field>
 
-          <Button type="submit" className="w-full">
+          <LoadingButton type="submit" className="w-full" loading={isPending}>
             Create Account
-          </Button>
+          </LoadingButton>
         </div>
       </form>
 
