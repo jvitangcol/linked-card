@@ -18,10 +18,8 @@ function FieldInfo({ field }: { field: AnyFieldApi }) {
   return (
     <>
       {field.state.meta.isTouched && !field.state.meta.isValid ? (
-        <em className="text-destructive text-sm">
-          <em>
-            {field.state.meta.errors.map((err) => err.message).join(", ")}
-          </em>
+        <em className="text-destructive text-xs">
+          {field.state.meta.errors.map((err) => err.message).join(", ")}
         </em>
       ) : null}
       {field.state.meta.isValidating ? "Validating..." : null}
@@ -58,12 +56,7 @@ export default function SignUpForm() {
   });
 
   return (
-    <div className="space-y-4 border">
-      <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold">Create Account</h1>
-        <p className="text-sm text-muted-foreground">Share it digital</p>
-      </div>
-
+    <div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -85,7 +78,7 @@ export default function SignUpForm() {
                   onChange={(e) => field.handleChange(e.target.value)}
                   autoComplete="off"
                 />
-                <div className="h-3.5">
+                <div>
                   <FieldInfo field={field} />
                 </div>
               </div>
@@ -95,7 +88,7 @@ export default function SignUpForm() {
           {/* Email Field */}
           <form.Field name="email">
             {(field) => (
-              <div className="space-y-2">
+              <div className="space-y-2 ">
                 <Label htmlFor={field.name}>Email</Label>
                 <Input
                   type="email"
@@ -115,7 +108,7 @@ export default function SignUpForm() {
           {/* Password Field */}
           <form.Field name="password">
             {(field) => (
-              <div className="space-y-2">
+              <div className="space-y-2 ">
                 <Label htmlFor={field.name}>Password</Label>
                 <Input
                   type="password"
@@ -137,9 +130,12 @@ export default function SignUpForm() {
         </div>
       </form>
 
-      <div className="text-center">
-        <span>Already have an account </span>
-        <Link href={"/login"} className="text-primary hover:underline">
+      <div className="mt-2 text-center text-xs">
+        Already have an account{" "}
+        <Link
+          href={"/login"}
+          className="text-primary underline underline-offset-4"
+        >
           Sign in
         </Link>
       </div>

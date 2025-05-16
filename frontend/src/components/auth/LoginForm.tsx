@@ -17,10 +17,8 @@ function FieldInfo({ field }: { field: AnyFieldApi }) {
   return (
     <>
       {field.state.meta.isTouched && !field.state.meta.isValid ? (
-        <em className="text-destructive text-sm">
-          <em>
-            {field.state.meta.errors.map((err) => err.message).join(", ")}
-          </em>
+        <em className="text-destructive text-xs">
+          {field.state.meta.errors.map((err) => err.message).join(", ")}
         </em>
       ) : null}
       {field.state.meta.isValidating ? "Validating..." : null}
@@ -56,12 +54,7 @@ export default function LoginForm() {
   });
 
   return (
-    <div className="space-y-4 border">
-      <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold">Welcome Back</h1>
-        <p className="text-sm text-muted-foreground">Share it digital</p>
-      </div>
-
+    <div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -83,7 +76,7 @@ export default function LoginForm() {
                   onChange={(e) => field.handleChange(e.target.value)}
                   autoComplete="off"
                 />
-                <div className="h-3.5">
+                <div>
                   <FieldInfo field={field} />
                 </div>
               </div>
@@ -102,7 +95,7 @@ export default function LoginForm() {
                   value={field.state.value}
                   onChange={(e) => field.handleChange(e.target.value)}
                 />
-                <div className="h-3.5">
+                <div>
                   <FieldInfo field={field} />
                 </div>
               </div>
@@ -115,9 +108,12 @@ export default function LoginForm() {
         </div>
       </form>
 
-      <div className="text-center">
+      <div className="mt-2 text-center text-xs">
         <span>Don&apos;t have an account? </span>
-        <Link href={"/sign-up"} className="text-primary hover:underline">
+        <Link
+          href={"/sign-up"}
+          className="text-primary underline underline-offset-4"
+        >
           Sign up
         </Link>
       </div>
