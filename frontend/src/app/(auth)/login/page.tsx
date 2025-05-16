@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className="flex flex-col  justify-center items-center min-h-svh bg-background p-6">
+    <main className="flex flex-col  justify-center items-center min-h-svh bg-secondary p-6">
       <Card className="md:w-[700px] py-0 overflow-hidden">
         <CardContent className="grid p-0 md:grid-cols-2">
           <div className="p-6 md:p-8">
