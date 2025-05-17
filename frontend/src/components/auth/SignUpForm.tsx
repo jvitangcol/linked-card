@@ -145,7 +145,7 @@ export default function SignUpForm() {
       <div className="mt-2 text-center text-xs">
         Already have an account{" "}
         <Link href={"/auth/login"} className=" underline underline-offset-4">
-          Sign in
+          Log in
         </Link>
       </div>
     </div>

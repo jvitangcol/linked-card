@@ -2,7 +2,7 @@
 
 import { auth } from "@/lib/auth";
 import { signUpSchema, SignUpValues } from "@/lib/validation";
-import { isRedirectError } from "next/dist/client/components/redirect-error";
+import { APIError } from "better-auth/api";
 
 export async function signUpEmailAction(credentials: SignUpValues) {
   try {
@@ -17,12 +17,11 @@ export async function signUpEmailAction(credentials: SignUpValues) {
     });
 
     return { error: null };
-  } catch (error) {
-    if (isRedirectError(error)) throw error;
-    console.error(error);
+  } catch (err) {
+    if (err instanceof APIError) {
+      return { error: err.message };
+    }
 
-    return {
-      error: "Something went wrong. Please try again",
-    };
+    return { error: "Internal Server Error" };
   }
 }

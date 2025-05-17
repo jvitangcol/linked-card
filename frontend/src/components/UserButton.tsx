@@ -62,7 +62,7 @@ export default function UserButton() {
           <MoreVerticalIcon className="ml-auto size-4" />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent align="end">
         <DropdownMenuLabel>
           Logged in as @{session?.user.name}
         </DropdownMenuLabel>
