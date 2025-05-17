@@ -5,14 +5,15 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "@tanstack/react-form";
 import type { AnyFieldApi } from "@tanstack/react-form";
+import { EyeOff, Eye } from "lucide-react";
+import { toast } from "sonner";
 
 import { signUpSchema, SignUpValues } from "@/lib/validation";
+import { signUpEmailAction } from "@/actions/auth/sign-up.action";
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import LoadingButton from "@/components/LoadingButton";
-import { signUpEmailAction } from "@/actions/auth/sign-up.action";
-import { toast } from "sonner";
 
 function FieldInfo({ field }: { field: AnyFieldApi }) {
   return (
@@ -30,6 +31,7 @@ function FieldInfo({ field }: { field: AnyFieldApi }) {
 export default function SignUpForm() {
   const router = useRouter();
   const [isPending, setIsPending] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm({
     defaultValues: {
@@ -50,7 +52,7 @@ export default function SignUpForm() {
         setIsPending(false);
       } else {
         toast.success("Registration complete. You're all set");
-        router.push("/login");
+        router.push("/auth/login");
       }
     },
   });
@@ -78,9 +80,8 @@ export default function SignUpForm() {
                   onChange={(e) => field.handleChange(e.target.value)}
                   autoComplete="off"
                 />
-                <div>
-                  <FieldInfo field={field} />
-                </div>
+
+                <FieldInfo field={field} />
               </div>
             )}
           </form.Field>
@@ -98,9 +99,7 @@ export default function SignUpForm() {
                   onChange={(e) => field.handleChange(e.target.value)}
                   autoComplete="off"
                 />
-                <div className="h-3.5">
-                  <FieldInfo field={field} />
-                </div>
+                <FieldInfo field={field} />
               </div>
             )}
           </form.Field>
@@ -110,16 +109,29 @@ export default function SignUpForm() {
             {(field) => (
               <div className="space-y-2 ">
                 <Label htmlFor={field.name}>Password</Label>
-                <Input
-                  type="password"
-                  id={field.name}
-                  name={field.name}
-                  value={field.state.value}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                />
-                <div className="h-3.5">
-                  <FieldInfo field={field} />
+                <div className="relative">
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    id={field.name}
+                    name={field.name}
+                    value={field.state.value}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    title={showPassword ? "Hide password" : "Show password"}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 transform text-muted-foreground"
+                  >
+                    {showPassword ? (
+                      <EyeOff className="size-5" />
+                    ) : (
+                      <Eye className="size-5" />
+                    )}
+                  </button>
                 </div>
+
+                <FieldInfo field={field} />
               </div>
             )}
           </form.Field>
@@ -132,10 +144,7 @@ export default function SignUpForm() {
 
       <div className="mt-2 text-center text-xs">
         Already have an account{" "}
-        <Link
-          href={"/login"}
-          className="text-primary underline underline-offset-4"
-        >
+        <Link href={"/auth/login"} className=" underline underline-offset-4">
           Sign in
         </Link>
       </div>

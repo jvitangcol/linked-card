@@ -10,12 +10,12 @@ export default function Customize() {
         <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-8">
           {/* Text */}
           <div className="space-y-4">
-            <h6 className="font-semibold text-primary">Customize</h6>
+            <h6 className="font-semibold">Customize</h6>
             <div className="space-y-8">
-              <h1 className="text-4xl md:text-[44px] font-bold text-primary">
+              <h1 className="text-4xl md:text-[44px] font-bold text-primary-foreground">
                 Design Your Unique Digital Business Card
               </h1>
-              <p className="text-primary-foreground">
+              <p>
                 With LinkCard, you can personalize your digital card to reflect
                 your style. Choose from a variety of colors and layouts to make
                 your card truly yours.

@@ -14,7 +14,7 @@ export default function Header() {
             className="flex gap-1 items-center font-semibold text-2xl"
           >
             <span>Link</span>
-            <IdCard size={28} className="text-primary" />
+            <IdCard size={28} className="text-secondary" />
           </Link>
 
           <div>

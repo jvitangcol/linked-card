@@ -1,27 +1,31 @@
-import { betterFetch } from "@better-fetch/fetch";
-import type { auth } from "@/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
+import { getSessionCookie } from "better-auth/cookies";
 
-type Session = typeof auth.$Infer.Session;
+const protectedRoutes = ["/cards"];
 
-export async function middleware(request: NextRequest) {
-  const { data: session } = await betterFetch<Session>(
-    "/api/auth/get-session",
-    {
-      baseURL: request.nextUrl.origin,
-      headers: {
-        cookie: request.headers.get("cookie") || "", // Forward the cookies from the request
-      },
-    }
-  );
+export async function middleware(req: NextRequest) {
+  const { nextUrl } = req;
+  const sessionCookie = getSessionCookie(req);
 
-  if (!session) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  const res = NextResponse.next();
+
+  const isLoggedIn = !!sessionCookie;
+  const isOnProtectedRoute = protectedRoutes.includes(nextUrl.pathname);
+  const isOnAuthRoute = nextUrl.pathname.startsWith("/auth");
+
+  if (isOnProtectedRoute && !isLoggedIn) {
+    return NextResponse.redirect(new URL("/auth/login", req.url));
   }
 
-  return NextResponse.next();
+  if (isOnAuthRoute && isLoggedIn) {
+    return NextResponse.redirect(new URL("/cards", req.url));
+  }
+
+  return res;
 }
 
 export const config = {
-  matcher: ["/dashboard"], // Apply middleware to specific routes
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+  ],
 };

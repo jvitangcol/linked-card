@@ -12,12 +12,12 @@ export default function Hero() {
         </div>
         <div className="lg:container mx-auto px-5 h-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 my-10 md:my-16">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground">
               Transform Your Details into a Digital Card
             </h1>
 
             <div className="space-y-4">
-              <p className="text-primary-foreground">
+              <p>
                 LinkCard empowers you to effortlessly create customizable
                 digital cards for personal or business use. Share your
                 information in style with just a click, whether as a link, QR

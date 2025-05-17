@@ -42,7 +42,7 @@ export default function UserButton() {
         },
         onSuccess: () => {
           toast.success("You logged out. See you soon");
-          router.push("/login");
+          router.push("/auth/login");
         },
       },
     });
