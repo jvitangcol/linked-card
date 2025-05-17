@@ -14,11 +14,11 @@ export default function Create() {
     <section className="bg-background pt-16">
       <div className="lg:container mx-auto px-5">
         <div className="space-y-4">
-          <h6 className="font-semibold text-primary text-center">Create</h6>
-          <h1 className="text-4xl md:text-[44px] font-bold text-primary text-center">
+          <h6 className="font-semibold text-center">Create</h6>
+          <h1 className="text-4xl md:text-[44px] font-bold text-primary-foreground text-center">
             Your Digital Card Awaits
           </h1>
-          <p className="text-secondary text-center">
+          <p className="text-muted-foreground text-center">
             Easily customize and share your personal or business details.
           </p>
           {/* Cards */}
@@ -38,7 +38,7 @@ export default function Create() {
                 </CardDescription>
               </CardContent>
               <CardFooter className="space-x-2">
-                <Button variant={"outline"}>Start</Button>
+                <Button variant={"secondary"}>Start</Button>
                 <Button variant={"ghost"}>
                   <span>Share</span>
                   <ChevronRight />

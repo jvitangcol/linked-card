@@ -77,10 +77,10 @@ export default function MobileNavbar() {
             ) : (
               <div className="flex flex-col gap-2">
                 <Button className="" variant={"secondary"}>
-                  <Link href={"login"}>Log in</Link>
+                  <Link href={"/auth/login"}>Log in</Link>
                 </Button>
                 <Button>
-                  <Link href={"/sign-up"}>Sign up</Link>
+                  <Link href={"/auth/sign-up"}>Sign up</Link>
                 </Button>
               </div>
             )}

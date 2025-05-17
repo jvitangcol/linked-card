@@ -12,7 +12,7 @@ export default function FrequentlyAskedQuestions() {
   return (
     <section className="bg-background py-10">
       <div className="lg:container mx-auto px-5 space-y-8">
-        <h1 className="text-4xl font-bold text-primary ">FAQs</h1>
+        <h1 className="text-4xl font-bold text-primary-foreground">FAQs</h1>
 
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="item-1">
@@ -103,7 +103,7 @@ export default function FrequentlyAskedQuestions() {
         </Accordion>
 
         <div className="space-y-3">
-          <h3 className="text-2xl md:text-3xl font-semibold text-primary">
+          <h3 className="text-2xl md:text-3xl font-semibold text-primary-foreground">
             Still have questions?
           </h3>
           <p className="text-primary-foreground ">

@@ -1,13 +1,13 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import signUpImage from "@/assets/sign-up.png";
-import SignUpForm from "@/components/auth/SignUpForm";
+import loginImage from "@/assets/login.png";
+import LoginForm from "@/components/auth/LoginForm";
 import { IdCard } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Sign Up",
+  title: "Sign in",
 };
 
 export default function Page() {
@@ -20,23 +20,21 @@ export default function Page() {
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <Link href={"/"} className="flex items-center gap-2">
-                  <span className="text-3xl font-bold text-primary">Link</span>
+                  <span className="text-3xl font-bold ">Link</span>
                   <IdCard size={32} className="text-secondary" />
                 </Link>
-                <h1 className="text-xl font-bold text-primary">
-                  Create an account
-                </h1>
-                <p className="text-balance text-muted-foreground">
-                  Share your details that matters to you{" "}
+                <h1 className="text-xl font-bold ">Welcome back</h1>
+                <p className="text-sm text-muted-foreground">
+                  Login to your LinkCard account
                 </p>
               </div>
-              <SignUpForm />
+              <LoginForm />
             </div>
           </div>
           {/* ----------------------------------- Image ------------------------------------ */}
           <div className="relative hidden md:block">
             <Image
-              src={signUpImage}
+              src={loginImage}
               alt="image"
               className="absolute inset-0 h-full w-full object-cover z-10"
             />
