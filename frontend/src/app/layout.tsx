@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { poppins } from "@/components/fonts";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "next-themes";
+import ReactQueryProvider from "@/app/ReactQueryProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,15 +21,17 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth ">
       <body className={`${poppins.className} antialiased`}>
-        <ThemeProvider
-          attribute={"class"}
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <Toaster position="top-center" richColors />
-        </ThemeProvider>
+        <ReactQueryProvider>
+          <ThemeProvider
+            attribute={"class"}
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <Toaster position="top-center" richColors />
+          </ThemeProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
