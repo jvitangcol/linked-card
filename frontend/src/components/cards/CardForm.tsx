@@ -39,32 +39,56 @@ export function CardForm() {
 
   const cardForm = useForm({
     defaultValues: {
-      prefix: "",
-      suffix: "",
-      firstName: "",
-      lastName: "",
-      title: "",
-      department: "",
-      company: "",
-      headline: "",
-      phone: "",
-      phoneLabel: "",
-      email: "",
-      emailLabel: "",
-      websiteLink: "",
-      websiteLabel: "",
-      facebookLink: "",
-      facebookLabel: "",
-      instagramLink: "",
-      instagramLabel: "",
-      youtubeLink: "",
-      youtubeLabel: "",
-      linkedInLink: "",
-      linkedInLabel: "",
-      gitLabLink: "",
-      gitLabLabel: "",
-      gitHubLink: "",
-      gitHubLabel: "",
+      personal: {
+        prefix: "",
+        suffix: "",
+        firstName: "",
+        lastName: "",
+      },
+      affiliation: {
+        title: "",
+        department: "",
+        company: "",
+        headline: "",
+      },
+      field: {
+        phone: {
+          number: "",
+          label: "",
+        },
+        email: {
+          emailAddress: "",
+          label: "",
+        },
+        website: {
+          link: "",
+          displayText: "",
+        },
+        facebook: {
+          link: "",
+          displayText: "",
+        },
+        instagram: {
+          link: "",
+          displayText: "",
+        },
+        youtube: {
+          link: "",
+          displayText: "",
+        },
+        linkedIn: {
+          link: "",
+          displayText: "",
+        },
+        gitLab: {
+          link: "",
+          displayText: "",
+        },
+        gitHub: {
+          link: "",
+          displayText: "",
+        },
+      },
     } as CardValues,
     validators: {
       onChange: cardSchema,
@@ -87,7 +111,6 @@ export function CardForm() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              e.stopPropagation();
               cardForm.handleSubmit();
             }}
           ></form>
@@ -108,7 +131,7 @@ export function CardForm() {
 
             <div className="grid grid-cols-2 gap-3 ">
               {/* Prefix Field --------------------------- */}
-              <cardForm.Field name="prefix">
+              <cardForm.Field name="personal.prefix">
                 {(field) => (
                   <div className="space-y-2">
                     <Label htmlFor={field.name}>Prefix</Label>
