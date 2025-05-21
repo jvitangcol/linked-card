@@ -95,7 +95,7 @@ export function CardForm() {
       onChangeAsyncDebounceMs: 500,
     },
     onSubmit: async ({ value }) => {
-      console.log(value);
+      alert(JSON.stringify(value));
     },
   });
 
@@ -113,9 +113,9 @@ export function CardForm() {
               e.preventDefault();
               cardForm.handleSubmit();
             }}
-          ></form>
-          {/* Display -------------------------------------------------------------------------- */}
-          {/* <div>
+          >
+            {/* Display -------------------------------------------------------------------------- */}
+            {/* <div>
             <h2>Display</h2>
             <div>
               <Label htmlFor="design">Design</Label>
@@ -125,139 +125,485 @@ export function CardForm() {
               <Label>Base Color</Label>
             </div>
           </div> */}
-          {/* Personal ---------------------------------------------------------------------- */}
-          <div className="space-y-3">
-            <h2 className="font-semibold text-2xl">Personal</h2>
+            {/* Personal ---------------------------------------------------------------------- */}
+            <div className="space-y-3">
+              <h2 className="font-semibold text-2xl">Personal</h2>
 
-            <div className="grid grid-cols-2 gap-3 ">
-              {/* Prefix Field --------------------------- */}
-              <cardForm.Field name="personal.prefix">
-                {(field) => (
-                  <div className="space-y-2">
-                    <Label htmlFor={field.name}>Prefix</Label>
-                    <Input
-                      type="text"
-                      id={field.name}
-                      name={field.name}
-                      value={field.state.value}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                    />
-                    <FieldInfo field={field} />
-                  </div>
-                )}
-              </cardForm.Field>
-              <div className="space-y-2">
-                <Label>Suffix</Label>
-                <Input type="text" />
-              </div>
-              <div className="space-y-2">
-                <Label>First Name</Label>
-                <Input type="text" />
-              </div>
-              <div className="space-y-2">
-                <Label>Last Name</Label>
-                <Input type="text" />
+              <div className="grid grid-cols-2 gap-3 ">
+                {/* Prefix Field --------------------------- */}
+                <cardForm.Field name="personal.prefix">
+                  {(field) => (
+                    <div className="space-y-2">
+                      <Label htmlFor={field.name}>Prefix</Label>
+                      <Input
+                        type="text"
+                        id={field.name}
+                        name={field.name}
+                        value={field.state.value}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                      />
+                      <FieldInfo field={field} />
+                    </div>
+                  )}
+                </cardForm.Field>
+
+                {/* Suffix Field --------------------------- */}
+                <cardForm.Field name="personal.suffix">
+                  {(field) => (
+                    <div className="space-y-2">
+                      <Label htmlFor={field.name}>Suffix</Label>
+                      <Input
+                        type="text"
+                        id={field.name}
+                        name={field.name}
+                        value={field.state.value}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                      />
+                      <FieldInfo field={field} />
+                    </div>
+                  )}
+                </cardForm.Field>
+
+                {/* First Name Field --------------------------- */}
+                <cardForm.Field name="personal.firstName">
+                  {(field) => (
+                    <div className="space-y-2">
+                      <Label htmlFor={field.name}>First name</Label>
+                      <Input
+                        type="text"
+                        id={field.name}
+                        name={field.name}
+                        value={field.state.value}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                      />
+                      <FieldInfo field={field} />
+                    </div>
+                  )}
+                </cardForm.Field>
+
+                {/* Last Name Field --------------------------- */}
+                <cardForm.Field name="personal.lastName">
+                  {(field) => (
+                    <div className="space-y-2">
+                      <Label htmlFor={field.name}>Last name</Label>
+                      <Input
+                        type="text"
+                        id={field.name}
+                        name={field.name}
+                        value={field.state.value}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                      />
+                      <FieldInfo field={field} />
+                    </div>
+                  )}
+                </cardForm.Field>
               </div>
             </div>
-          </div>
 
-          {/* Affiliation -------------------------------------------------------------------- */}
-          <div className="space-y-3">
-            <h2 className="font-semibold text-2xl">Affiliation</h2>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="space-y-2">
-                <Label>Title</Label>
-                <Input type="text" />
-              </div>
-              <div className="space-y-2">
-                <Label>Department</Label>
-                <Input type="text" />
-              </div>
-              <div className="space-y-2">
-                <Label>Company</Label>
-                <Input type="text" />
-              </div>
-              <div className="space-y-2">
-                <Label>Headline</Label>
-                <Input type="text" />
+            {/* Affiliation -------------------------------------------------------------------- */}
+            <div className="space-y-3">
+              <h2 className="font-semibold text-2xl">Affiliation</h2>
+              <div className="grid grid-cols-2 gap-3">
+                {/* Title Field --------------------------- */}
+                <cardForm.Field name="affiliation.title">
+                  {(field) => (
+                    <div className="space-y-2">
+                      <Label htmlFor={field.name}>Title</Label>
+                      <Input
+                        type="text"
+                        id={field.name}
+                        name={field.name}
+                        value={field.state.value}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                      />
+                      <FieldInfo field={field} />
+                    </div>
+                  )}
+                </cardForm.Field>
+
+                {/* Department Field --------------------------- */}
+                <cardForm.Field name="affiliation.department">
+                  {(field) => (
+                    <div className="space-y-2">
+                      <Label htmlFor={field.name}>Department</Label>
+                      <Input
+                        type="text"
+                        id={field.name}
+                        name={field.name}
+                        value={field.state.value}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                      />
+                      <FieldInfo field={field} />
+                    </div>
+                  )}
+                </cardForm.Field>
+
+                {/* Company Field --------------------------- */}
+                <cardForm.Field name="affiliation.company">
+                  {(field) => (
+                    <div className="space-y-2">
+                      <Label htmlFor={field.name}>Company</Label>
+                      <Input
+                        type="text"
+                        id={field.name}
+                        name={field.name}
+                        value={field.state.value}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                      />
+                      <FieldInfo field={field} />
+                    </div>
+                  )}
+                </cardForm.Field>
+
+                {/* Headline Field --------------------------- */}
+                <cardForm.Field name="affiliation.headline">
+                  {(field) => (
+                    <div className="space-y-2">
+                      <Label htmlFor={field.name}>Headline</Label>
+                      <Input
+                        type="text"
+                        id={field.name}
+                        name={field.name}
+                        value={field.state.value}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                      />
+                      <FieldInfo field={field} />
+                    </div>
+                  )}
+                </cardForm.Field>
               </div>
             </div>
-          </div>
 
-          {/* Fields ---------------------------------------------------------------------------- */}
-          <div className="space-y-3">
-            <h2 className="font-semibold text-2xl">Fields</h2>
-            <div className="grid grid-cols-3 gap-3">
-              <div className="space-y-2">
-                <Label>Phone</Label>
-                <Input type="tel" placeholder="eg. 09123456789" />
-                <Select>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select information type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="personal">personal</SelectItem>
-                    <SelectItem value="work">work</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label>Email</Label>
-                <Input type="email" placeholder="Enter a valid email" />
-                <Select>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select information type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="personal">personal</SelectItem>
-                    <SelectItem value="work">work</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label>Website</Label>
-                <Input type="url" placeholder="www.samplelink.com" />
-                <Input type="text" placeholder="Display text" />
-              </div>
+            {/* Fields ---------------------------------------------------------------------------- */}
+            <div className="space-y-3">
+              <h2 className="font-semibold text-2xl">Fields</h2>
+              <div className="grid grid-cols-3 gap-3">
+                {/* Phone Field --------------------------- */}
+                <div className="space-y-2">
+                  <Label>Phone</Label>
+                  <cardForm.Field name="field.phone">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Input
+                          type="tel"
+                          placeholder="eg. 09123456789"
+                          name={field.name}
+                          id={field.name}
+                          value={field.state.value.number}
+                          onChange={(e) =>
+                            field.handleChange({
+                              ...field.state.value,
+                              number: e.target.value,
+                            })
+                          }
+                        />
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
 
-              <div className="space-y-2">
-                <Label>Facebook</Label>
-                <Input type="url" placeholder="www.samplelink.com" />
-                <Input type="text" placeholder="Display text" />
-              </div>
-              <div className="space-y-2">
-                <Label>Instagram</Label>
-                <Input type="url" placeholder="www.samplelink.com" />
-                <Input type="text" placeholder="Display text" />
-              </div>
-              <div className="space-y-2">
-                <Label>Twitter / X</Label>
-                <Input type="url" placeholder="www.samplelink.com" />
-                <Input type="text" placeholder="Display text" />
-              </div>
+                  <cardForm.Field name="field.phone.label">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Select
+                          value={field.state.value}
+                          onValueChange={(val) => field.handleChange(val)}
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select information type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="personal">personal</SelectItem>
+                            <SelectItem value="work">work</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
+                </div>
 
-              <div className="space-y-2">
-                <Label>LinkedIn</Label>
-                <Input type="url" placeholder="www.samplelink.com" />
-                <Input type="text" placeholder="Display text" />
-              </div>
-              <div className="space-y-2">
-                <Label>GitLab</Label>
-                <Input type="url" placeholder="www.samplelink.com" />
-                <Input type="text" placeholder="Display text" />
-              </div>
-              <div className="space-y-2">
-                <Label>GitHub</Label>
-                <Input type="url" placeholder="www.samplelink.com" />
-                <Input type="text" placeholder="Display text" />
+                {/* Email Field --------------------------- */}
+                <div className="space-y-2">
+                  <cardForm.Field name="field.email.emailAddress">
+                    {(field) => (
+                      <div>
+                        <Label htmlFor={field.name}>Email</Label>
+                        <Input
+                          type="email"
+                          placeholder="Enter a valid email"
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
+                  <cardForm.Field name="field.email.label">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Select
+                          value={field.state.value}
+                          onValueChange={(val) => field.handleChange(val)}
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select information type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="personal">personal</SelectItem>
+                            <SelectItem value="work">work</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    )}
+                  </cardForm.Field>
+                </div>
+
+                {/* Website Field --------------------------- */}
+                <div className="space-y-2">
+                  <cardForm.Field name="field.website.link">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Label htmlFor={field.name}>Website</Label>
+                        <Input
+                          type="url"
+                          placeholder="www.samplelink.com"
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
+
+                  <cardForm.Field name="field.website.displayText">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Input
+                          type="text"
+                          placeholder="Display text"
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
+                </div>
+
+                {/* Facebook Field --------------------------- */}
+                <div className="space-y-2">
+                  <cardForm.Field name="field.facebook.link">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Label htmlFor={field.name}>Facebook</Label>
+                        <Input
+                          type="url"
+                          placeholder="www.samplelink.com"
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
+
+                  <cardForm.Field name="field.website.displayText">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Input
+                          type="text"
+                          placeholder="Display text"
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
+                </div>
+
+                {/* Instagram Field --------------------------- */}
+                <div className="space-y-2">
+                  <cardForm.Field name="field.instagram.link">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Label htmlFor={field.name}>Instagram</Label>
+                        <Input
+                          type="url"
+                          placeholder="www.samplelink.com"
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
+
+                  <cardForm.Field name="field.instagram.displayText">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Input
+                          type="text"
+                          placeholder="Display text"
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
+                </div>
+
+                {/* Twitter Field --------------------------- */}
+                <div className="space-y-2">
+                  <cardForm.Field name="field.youtube.link">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Label htmlFor={field.name}>Youtube</Label>
+                        <Input
+                          type="url"
+                          placeholder="www.samplelink.com"
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
+
+                  <cardForm.Field name="field.youtube.displayText">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Input
+                          type="text"
+                          placeholder="Display text"
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
+                </div>
+
+                {/* LinkedIn Field --------------------------- */}
+                <div className="space-y-2">
+                  <cardForm.Field name="field.linkedIn.link">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Label htmlFor={field.name}>LinkedIn</Label>
+                        <Input
+                          type="url"
+                          placeholder="www.samplelink.com"
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
+                  <Input type="text" placeholder="Display text" />
+                </div>
+
+                {/* GitLab Field --------------------------- */}
+                <div className="space-y-2">
+                  <cardForm.Field name="field.gitLab.link">
+                    {(field) => (
+                      <div>
+                        <Label htmlFor={field.name}>GitLab</Label>
+                        <Input
+                          type="url"
+                          placeholder="www.samplelink.com"
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
+
+                  <cardForm.Field name="field.gitLab.displayText">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Input
+                          type="text"
+                          placeholder="Display text"
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
+                </div>
+
+                {/* GitHub Field --------------------------- */}
+                <div className="space-y-2">
+                  <cardForm.Field name="field.gitHub.link">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Label htmlFor={field.name}>GitHub</Label>
+                        <Input
+                          type="url"
+                          placeholder="www.samplelink.com"
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                        <FieldInfo field={field} />
+                      </div>
+                    )}
+                  </cardForm.Field>
+
+                  <cardForm.Field name="field.gitHub.displayText">
+                    {(field) => (
+                      <div className="space-y-2">
+                        <Input
+                          type="text"
+                          placeholder="Display text"
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                        />
+                      </div>
+                    )}
+                  </cardForm.Field>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div>
-            <Button variant={"ghost"}>Cancel</Button>
-            <Button>Submit</Button>
-          </div>
+            <div>
+              <Button variant={"ghost"}>Cancel</Button>
+              <Button>Submit</Button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
